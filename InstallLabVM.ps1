@@ -25,7 +25,7 @@ ForEach ($PackageName in $Packages)
 #Add Demo User to docker group
 Add-LocalGroupMember -Member stormtrooperio -Group docker-users
 
-#Bring down Desktop Shortcuts
+#Bring down Desktop Shortcuts and Student Files
 $zipDownload = "https://github.com/deltadan/vdcadmin/blob/master/studentfiles.zip?raw=true"
 $downloadedFile = "D:\shortcuts.zip"
 $vmFolder = "C:\Users\Public\Desktop"
