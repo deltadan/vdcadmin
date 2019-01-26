@@ -26,7 +26,7 @@
     "LABVM-PUBIPName": "[concat(variables('LABVMName'), '-PIP')]",
     "LABVMInstallHyperVScriptFolder": ".",
     "LABVMInstallHyperVScriptFileName": "InstallLabVM.ps1",
-    "LABVMInstallHyperVURL": "https://raw.githubusercontent.com/deltadan/windows10docker/master/InstallLabVM.ps1"
+    "LABVMInstallHyperVURL": "https://raw.githubusercontent.com/deltadan/vdcadmin/master/InstallLabVM.ps1"
   },
   "resources": [
     {
