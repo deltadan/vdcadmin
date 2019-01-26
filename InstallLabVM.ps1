@@ -16,13 +16,17 @@ ForEach ($PackageName in $Packages)
 {choco install $PackageName -y}
 
 #Install Visual Studio Code Extensions
-#& 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-vscode.csharp
+& 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension msazurermtools.azurerm-vscode-tools
+& 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-vscode.azure-account
+& 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-vscode.azurecli
+& 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-python.python
+
 
 #Add Demo User to docker group
 Add-LocalGroupMember -Member stormtrooperio -Group docker-users
 
 #Bring down Desktop Shortcuts
-$zipDownload = "https://github.com/deltadan/vdcadmin/blob/master/shortcuts.zip?raw=true"
+$zipDownload = "https://github.com/deltadan/vdcadmin/blob/master/studentfiles.zip?raw=true"
 $downloadedFile = "D:\shortcuts.zip"
 $vmFolder = "C:\Users\Public\Desktop"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
