@@ -7,10 +7,9 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object
 
 #Assign Packages to Install
 $Packages = 'googlechrome',`
-            'docker-for-windows',`
+            'docker-desktop',`
             'visualstudiocode',`
-            'git', `
-            'python3 --version 3.6.4.20180116'
+            'git'
 
 #Install Packages
 ForEach ($PackageName in $Packages)
@@ -23,7 +22,14 @@ ForEach ($PackageName in $Packages)
 & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-python.python
 & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-vscode.powershell
 & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension peterjausovec.vscode-docker
-& python -m pip install -U pylint --user
+
+#Install Python 3.6.4 and pylint
+choco install python3 --version 3.6.4.20180116 -y
+$command1 = @'
+cmd.exe /C C:\Python36\python.exe\python -m pip install -U pylint --user
+'@
+Set-ExecutionPolicy Bypass -Scope Process -Force
+Invoke-Expression -Command:$command1
 
 #Add Demo User to docker group
 Add-LocalGroupMember -Member stormtrooperio -Group docker-users
