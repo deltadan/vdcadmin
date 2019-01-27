@@ -3,13 +3,14 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All -All -N
 Enable-WindowsOptionalFeature -Online -FeatureName Containers -All -NoRestart
 
 #Install Chocolatey
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 #Assign Packages to Install
 $Packages = 'googlechrome',`
             'docker-for-windows',`
             'visualstudiocode',`
-            'git'
+            'git', `
+            'python3 --version 3.6.4.20180116'
 
 #Install Packages
 ForEach ($PackageName in $Packages)
@@ -20,7 +21,9 @@ ForEach ($PackageName in $Packages)
 & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-vscode.azure-account
 & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-vscode.azurecli
 & 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-python.python
-
+& 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension ms-vscode.powershell
+& 'C:\Program Files\Microsoft VS Code\bin\code.cmd' --install-extension peterjausovec.vscode-docker
+& python -m pip install -U pylint --user
 
 #Add Demo User to docker group
 Add-LocalGroupMember -Member stormtrooperio -Group docker-users
