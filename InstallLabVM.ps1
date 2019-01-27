@@ -32,7 +32,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 Invoke-Expression -Command:$command1
 
 #Add Demo User to docker group
-Add-LocalGroupMember -Member stormtrooperio -Group docker-users
+Add-LocalGroupMember -Member vdcadmin -Group docker-users
 
 #Bring down Desktop Shortcuts
 $zipDownload = "https://github.com/deltadan/vdcadmin/lab-files/blob/master/shortcuts.zip?raw=true"
@@ -50,7 +50,6 @@ $vmFolder = "C:\Source\vdc"
 Invoke-WebRequest $zipDownload -OutFile $downloadedFile
 Add-Type -assembly "system.io.compression.filesystem"
 [io.compression.zipfile]::ExtractToDirectory($downloadedFile, $vmFolder)
-
 
 #Reboot
 Restart-Computer
