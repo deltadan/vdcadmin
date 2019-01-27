@@ -34,14 +34,23 @@ Invoke-Expression -Command:$command1
 #Add Demo User to docker group
 Add-LocalGroupMember -Member stormtrooperio -Group docker-users
 
-#Bring down Desktop Shortcuts and Student Files
-$zipDownload = "https://github.com/deltadan/vdcadmin/blob/master/studentfiles.zip?raw=true"
+#Bring down Desktop Shortcuts
+$zipDownload = "https://github.com/deltadan/vdcadmin/lab-files/blob/master/shortcuts.zip?raw=true"
 $downloadedFile = "D:\shortcuts.zip"
 $vmFolder = "C:\Users\Public\Desktop"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Invoke-WebRequest $zipDownload -OutFile $downloadedFile
 Add-Type -assembly "system.io.compression.filesystem"
 [io.compression.zipfile]::ExtractToDirectory($downloadedFile, $vmFolder)
+
+$zipDownload = "https://github.com/deltadan/vdcadmin/lab-files/blob/master/studentfiles.zip?raw=true"
+$downloadedFile = "D:\studentfiles.zip"
+$vmFolder = "C:\Source\vdc"
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+Invoke-WebRequest $zipDownload -OutFile $downloadedFile
+Add-Type -assembly "system.io.compression.filesystem"
+[io.compression.zipfile]::ExtractToDirectory($downloadedFile, $vmFolder)
+
 
 #Reboot
 Restart-Computer
