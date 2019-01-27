@@ -50,7 +50,7 @@ Add-Type -assembly "system.io.compression.filesystem"
 
 $zipDownload = "https://github.com/deltadan/vdcadmin/blob/master/lab-files/studentfiles.zip?raw=true"
 $downloadedFile = "D:\studentfiles.zip"
-$vmFolder = "C:\Source\vdc"
+$vmFolder = "C:\Source"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Invoke-WebRequest $zipDownload -OutFile $downloadedFile
 Add-Type -assembly "system.io.compression.filesystem"
