@@ -15,17 +15,6 @@ $Packages = 'googlechrome',`
 ForEach ($PackageName in $Packages)
 {choco install $PackageName -y}
 
-#Add LABVM UserId to docker group
-Add-LocalGroupMember -Member vdcadmin -Group docker-users
-
-#Install Python 3.6.4 and pylint
-choco install python3 --version 3.6.4.20180116 -y
-$command1 = @'
-cmd.exe /C C:\Python36\python.exe\python -m pip install -U pylint --user
-'@
-Set-ExecutionPolicy Bypass -Scope Process -Force
-Invoke-Expression -Command:$command1
-
 #Install Visual Studio Code Extensions
 $Extensions = 'ms-vscode.azurecli',`
               'msazurermtools.azurerm-vscode-tools',`
@@ -39,7 +28,16 @@ $Extensions = 'ms-vscode.azurecli',`
 ForEach ($ExtensionName in $Extensions)
 {cmd.exe /C "C:\Program Files\Microsoft VS Code\bin\code.cmd" --install-extension $ExtensionName}
 
-#Bring down Desktop Shortcuts
+#Install Python 3.6.4 and pylint
+choco install python3 --version 3.6.4.20180116 -y
+$command1 = @'
+cmd.exe /C C:\Python36\python.exe\python -m pip install -U pylint --user
+'@
+Set-ExecutionPolicy Bypass -Scope Process -Force
+Invoke-Expression -Command:$command1
+
+
+#Bring down Desktop Shortcuts & VDC Bits
 $zipDownload = "https://github.com/deltadan/vdcadmin/blob/master/lab-files/desktoplinks.zip?raw=true"
 $downloadedFile = "D:\desktoplinks.zip"
 $vmFolder = "C:\Users\Public\Desktop"
@@ -50,11 +48,14 @@ Add-Type -assembly "system.io.compression.filesystem"
 
 $zipDownload = "https://github.com/deltadan/vdcadmin/blob/master/lab-files/studentfiles.zip?raw=true"
 $downloadedFile = "D:\studentfiles.zip"
-$vmFolder = "C:\Source\vdc"
+$vmFolder = "C:\Source"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Invoke-WebRequest $zipDownload -OutFile $downloadedFile
 Add-Type -assembly "system.io.compression.filesystem"
 [io.compression.zipfile]::ExtractToDirectory($downloadedFile, $vmFolder)
+
+#Add LABVM UserId to docker group
+Add-LocalGroupMember -Member vdcadmin -Group docker-users
 
 #Reboot
 Restart-Computer
