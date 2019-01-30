@@ -17,7 +17,7 @@
     "LABVMAdminPassword": "Password.1!!",
     "LABVMImagePublisher": "MicrosoftWindowsDesktop",
     "LABVMImageOffer": "Windows-10",
-    "LABVMWindowsOSVersion": "rs5-pro",
+    "LABVMWindowsOSVersion": "RS3-Pro",
     "LABVMVmSize": "Standard_D4s_v3",
     "LABVMVnetID": "[resourceId('Microsoft.Network/virtualNetworks', 'LABVMVNET')]",
     "LABVMSubnetRef": "[concat(variables('LABVMVnetID'), '/subnets/', variables('LABVMVNETSubnet1Name'))]",
