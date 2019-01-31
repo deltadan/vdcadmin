@@ -47,7 +47,7 @@ Invoke-WebRequest $zipDownload -OutFile $downloadedFile
 Add-Type -assembly "system.io.compression.filesystem"
 [io.compression.zipfile]::ExtractToDirectory($downloadedFile, $vmFolder)
 
-$zipDownload = "https://github.com/deltadan/vdcadmin/blob/master/lab-files/studentfiles.zip?raw=true"
+$zipDownload = "https://vdcstudentfiles.blob.core.windows.net/vdcworkshopfeb/studentfiles.zip"
 $downloadedFile = "D:\studentfiles.zip"
 $vmFolder = "C:\Source"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
