@@ -32,7 +32,7 @@ ForEach ($ExtensionName in $Extensions)
 #Install Python 3.6.4 and pylint
 choco install python3 --version 3.6.4.20180116 -y
 $command1 = @'
-cmd.exe /C C:\Python36\python.exe\python -m pip install -U pylint --user
+cmd.exe /C C:\Python36\python.exe -m pip install -U pylint --user
 '@
 Set-ExecutionPolicy Bypass -Scope Process -Force
 Invoke-Expression -Command:$command1
@@ -49,7 +49,7 @@ Add-Type -assembly "system.io.compression.filesystem"
 
 $zipDownload = "https://vdcstudentfiles.blob.core.windows.net/vdcworkshopfeb/studentfiles.zip"
 $downloadedFile = "D:\studentfiles.zip"
-$vmFolder = "C:\Source"
+$vmFolder = "C:\Source\vdc"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Invoke-WebRequest $zipDownload -OutFile $downloadedFile
 Add-Type -assembly "system.io.compression.filesystem"
