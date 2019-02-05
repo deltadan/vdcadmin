@@ -19,7 +19,6 @@ ForEach ($PackageName in $Packages)
 $Extensions = 'ms-vscode.azurecli',`
               'msazurermtools.azurerm-vscode-tools',`
               'ms-vscode.azure-account',`
-              'ms-vscode.azurecli',`
               'ms-python.python',`
               'ms-vscode.powershell',`
               'peterjausovec.vscode-docker'
